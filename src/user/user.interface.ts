@@ -1,4 +1,5 @@
 export interface User {
+    id: string;
     name: string; // required with minimum 5 chracters
     surname: string;
     email: string;
