@@ -10,8 +10,19 @@ module.exports = {
     },
     module: {
         loaders: [
-            {test: /\.ts$/, loader: 'ts'}
-        ]
+                    // {test: /\.ts$/, loader: 'ts'},
+                    {
+                        test: /\.ts$/,
+                        loaders: ['awesome-typescript-loader', 'angular2-template-loader?keepUrl=true']
+                        // exclude: [/\.(spec|e2e)\.ts$/]
+                    },
+                    /* Embed files. */
+                    { 
+                        test: /\.(html|css)$/, 
+                        loader: 'raw-loader'
+                        // exclude: /\.async\.(html|css)$/
+                    },
+                ]         
     },
     resolve: {
         extensions: ['', '.js', '.ts']

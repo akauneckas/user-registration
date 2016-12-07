@@ -1,0 +1,43 @@
+<form [formGroup]="userForm" novalidate (ngSubmit)="save(userForm.value, userForm.valid)">
+    <div>
+        <label>Name</label>
+        <input type="text" formControlName="name">
+        <small [hidden]="userForm.controls.name.valid || (userForm.controls.name.pristine && !submitted)">
+            Name is required
+        </small>
+    </div>
+    <div>
+        <label>Surname</label>
+        <input type="text" formControlName="surname">
+        <small [hidden]="userForm.controls.surname.valid || (userForm.controls.surname.pristine && !submitted)">
+            Name is required
+        </small>
+    </div>
+    <div formGroupName="address">
+        <label>Town</label>
+        <input type="text" formControlName="town">
+        <small [hidden]="userForm.controls.address.controls.town.valid || (userForm.controls.address.controls.town.pristine && !submitted)">
+            street required
+        </small>
+    </div>
+    <div formGroupName="address">
+        <label>Street</label>
+        <input type="text" formControlName="street">
+        <small [hidden]="userForm.controls.address.controls.street.valid || (userForm.controls.address.controls.street.pristine && !submitted)">
+            street required
+        </small>
+    </div>
+
+    <div formGroupName="address">
+        <label>House number</label>
+        <input type="text" formControlName="houseNumber">
+        <small [hidden]="userForm.controls.address.controls.houseNumber.valid || (userForm.controls.address.controls.houseNumber.pristine && !submitted)">
+            street required
+        </small>
+    </div>
+    <div formGroupName="address">
+        <label>Zip code</label>
+        <input type="text" formControlName="zipcode">
+    </div>
+    <button type="submit">Submit</button>
+</form>
