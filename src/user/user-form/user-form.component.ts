@@ -6,7 +6,7 @@ import { UserService } from '../user.service';
 @Component({
     // moduleId: module.id,
     selector: 'user-form',
-    templateUrl: 'user-form.component.html'
+    templateUrl: 'user-form2.component.html'
 })
 export class UserFormComponent implements OnInit {
     public userForm: FormGroup;
@@ -18,6 +18,7 @@ export class UserFormComponent implements OnInit {
            this.userForm = this._fb.group({
             name: ['', <any>Validators.required],
             surname: ['', <any>Validators.required],
+            email: [''],
             address: this._fb.group({
                 town: ['', <any>Validators.required],
                 street: ['', <any>Validators.required],

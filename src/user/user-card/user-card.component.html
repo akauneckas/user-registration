@@ -1,0 +1,10 @@
+<md-card>
+    <md-card-header>
+        <md-card-title>{{user.name}} {{user.surname}}</md-card-title>
+        <md-card-subtitle>{{user.email}}</md-card-subtitle>
+   </md-card-header>
+    <md-card-content>
+        <small-map [coordinates] ="user.address.coordinates"></small-map>
+    </md-card-content>
+</md-card>
+

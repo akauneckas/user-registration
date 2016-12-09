@@ -1,0 +1,40 @@
+<md-card>
+  <md-toolbar color="primary">User registration</md-toolbar>
+  <md-card-content>
+    <form [formGroup]="userForm" novalidate (ngSubmit)="save(userForm.value, userForm.valid)">
+      <table style="width: 100%" cellspacing="0">
+        <tr>
+          <td>
+              <md-input type="text" formControlName="name" placeholder="First name" style="width: 100%">
+                <!--<md-hint [hidden]="userForm.controls.name.valid || (userForm.controls.name.pristine && !submitted)">Name is required</md-hint>-->
+              </md-input>
+            </td>
+          <td>
+            <md-input type="text" formControlName="surname" placeholder="Last name" style="width: 100%">
+                <!--<md-hint [hidden]="userForm.controls.surname.valid || (userForm.controls.surname.pristine && !submitted)">Last name is required</md-hint>-->
+            </md-input>
+          </td>
+        </tr>
+      </table>
+      <p>
+        <md-input type="text" formControlName="email" placeholder="Email" style="width: 100%">
+          <!--<md-hint [hidden]="userForm.controls.email.valid || (userForm.controls.email.pristine && !submitted)">Last name is required</md-hint>-->
+        </md-input>
+      </p>
+      <table style="width: 100%" cellspacing="0">
+        <tr>
+          <td formGroupName="address"><md-input formControlName="town" placeholder="Town"></md-input></td>
+          <td formGroupName="address"><md-input formControlName="street" placeholder="Street"></md-input></td>
+          <td formGroupName="address"><md-input formControlName="houseNumber" placeholder="House number"></md-input></td>
+          <td formGroupName="address">
+            <md-input #zipCode  formControlName="zipcode" class="demo-full-width" maxlength="5" placeholder="Zip Code">
+              <md-hint></md-hint>
+            </md-input>
+          </td>
+        </tr>
+      </table>
+      <button md-raised-button type="submit">Submit</button>
+    </form>
+  </md-card-content>
+</md-card>
+
