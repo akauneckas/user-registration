@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-
+    devtool: 'inline-source-map',
     entry: './src/main.ts',
     output: {
         path: './dist',

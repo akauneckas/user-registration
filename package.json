@@ -5,12 +5,21 @@
     "build": "webpack --progress",
     "build:prod": "webpack -p --progress",
     "postinstall": "typings install",
-    "serve": "webpack-dev-server --inline --progress"
+    "test": "karma start config/karma.conf.js",
+    "start": "webpack-dev-server --inline --progress --port 8080"
   },
   "devDependencies": {
     "angular2-template-loader": "^0.6.0",
     "awesome-typescript-loader": "^3.0.0-beta.9",
     "html-webpack-plugin": "^2.24.1",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-mocha-reporter": "^2.2.1",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^1.8.0",
+    "phantomjs-prebuilt": "^2.1.13",
     "raw-loader": "^0.5.1",
     "typescript": "^2.0.10",
     "typings": "^2.0.0",
