@@ -6,4 +6,5 @@ export interface User {
     surname: string;
     email: string;
     address: Address;
+    formattedAddress: string;
 }

@@ -10,8 +10,8 @@ declare var google: any;
 })
 export class SmallMapComponent implements OnInit {
     @Input() coordinates: Coordinates = {
-        lat: '',
-        lng: ''
+        lat: 0,
+        lng: 0
     };
     
     constructor() { }

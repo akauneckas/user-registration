@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { User } from './user.interface';
-import { AddressValidationSerivce } from '../common/services/address-validation.service'
+import { GeocodingService } from '../common/services/geocoding.service';
+import { MessageService } from '../common/services/message.service';
+
 
 @Injectable()
 export class UserService {
 
     readonly USER_KEY: string;
 
-    constructor(private addressValidationSerivce: AddressValidationSerivce){
+    constructor(private geocodingService: GeocodingService, private messageSerice: MessageService){
         this.USER_KEY = 'users';
     }
     //user id
@@ -30,15 +32,24 @@ export class UserService {
     //return saved user id
     saveUser(user: User): void{
        console.log('save', user); 
-       this.addressValidationSerivce.getCoordinates(this.addressValidationSerivce.formateAddress(user.address)).then((result) => {
-           console.log('promise result', result);
-           user.address.coordinates =  result;
-            let users = this.getUsers();
-            //check if user exists?
-            users.push(user);
-            localStorage.setItem(this.USER_KEY, JSON.stringify(users));
-       }, (reason) => {
-           console.log(reason);
-       });
+       //return status
+       this.geocodingService.codeAddress(Object.values(user.address).join(' ')).subscribe(
+           results => {
+               //check es6 features
+                let users = this.getUsers();
+                user.address.coordinates = {
+                    lat: results[0].geometry.location.lat(),
+                    lng: results[0].geometry.location.lng()
+                }
+
+                user.formattedAddress = results[0].formatted_address;
+                users.push(user);
+                localStorage.setItem(this.USER_KEY, JSON.stringify(users));
+                this.messageSerice.showSuccessMessage('User saved successfully');
+            },
+           error => {
+                this.messageSerice.showErrorMessage('Wrong user address');
+           }
+        );
     }
 }
