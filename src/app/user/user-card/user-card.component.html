@@ -4,7 +4,8 @@
         <md-card-subtitle>{{user.email}}</md-card-subtitle>
    </md-card-header>
     <md-card-content>
-        <google-map [coordinates] ="user.address.coordinates"></google-map>
+        <p>{{user.formattedAddress}}</p>
+        <div googleMap [coordinates]="user.address.coordinates" [formattedAddress] = "user.formattedAddress"></div>
     </md-card-content>
 </md-card>
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
+import { User } from '../user.interface';
 
 @Component({
     selector: 'user-list',
@@ -6,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class UserListComponent {
+    
+    public users: User[];
 
-    constructor(){}
+    constructor(private userSerivce: UserService){}
 
     ngOnInit() {
-            
+        this.users = this.userSerivce.getUsers();
     }
 }
        

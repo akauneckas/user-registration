@@ -19,7 +19,6 @@ export class UserService {
 
     //return observable
     getUsers(): User[] {       
-        console.log('get');
         let users = new Array<User>();
         let usersKey = localStorage.getItem(this.USER_KEY);
 
