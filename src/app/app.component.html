@@ -1,0 +1,15 @@
+<md-toolbar color="primary">
+    <span>User registration</span>
+</md-toolbar>
+<md-sidenav-layout>
+    <md-sidenav mode="side" opened="true">
+        <nav>
+            <ul>
+                <li><a routerLink="">Home</a></li>
+                <li><a routerLink="/users">Users</a></li>
+                <li><a routerLink="/user/create">Create user</a></li>
+            </ul>
+        </nav>
+    </md-sidenav>
+    <router-outlet></router-outlet>
+</md-sidenav-layout>

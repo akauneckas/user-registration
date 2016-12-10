@@ -3,9 +3,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
     selector: 'app',
-    template: `<div>
-                  <user></user>  
-               </div>`
+    templateUrl: 'app.component.html'
 })
 export class AppComponent {
 
@@ -15,4 +13,3 @@ export class AppComponent {
             this.toastr.setRootViewContainerRef(this.vRef);     
         }
 }
-       

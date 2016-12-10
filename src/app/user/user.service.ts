@@ -12,11 +12,12 @@ export class UserService {
     constructor(private geocodingService: GeocodingService, private messageSerice: MessageService){
         this.USER_KEY = 'users';
     }
-    //user id
+    //return observable
     getUser(): User{
         return this.getUsers()[0];
     }
 
+    //return observable
     getUsers(): User[] {       
         console.log('get');
         let users = new Array<User>();
@@ -29,7 +30,7 @@ export class UserService {
         return users;
     }
 
-    //return saved user id
+    //return observable
     saveUser(user: User): void{
        console.log('save', user); 
        //return status
