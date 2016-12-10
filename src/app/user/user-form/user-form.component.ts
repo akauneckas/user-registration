@@ -15,33 +15,38 @@ export class UserFormComponent implements OnInit {
     constructor(private _fb: FormBuilder, private userService: UserService) { }
 
     ngOnInit() {
-           this.userForm = this._fb.group({
-            name: ['', <any>Validators.required],
-            surname: ['', <any>Validators.required],
-            email: [''],
+        const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        this.userForm = this._fb.group({
+            name: ['', Validators.required],
+            surname: ['', Validators.required],
+            email: ['', [Validators.required, Validators.pattern(emailRegex)]],
             address: this._fb.group({
-                town: ['', <any>Validators.required],
-                street: ['', <any>Validators.required],
+                town: [''],
+                street: [''],
                 houseNumber: [''],
                 zipcode: ['']
             })
         });
     }
 
-    isValid(formControl): boolean {
-        return (formControl.invalid && this.submitted) ||
-               (formControl.touched && formControl.invalid);
+    isRequired(formControl): boolean {
+        return (formControl.invalid && this.submitted && formControl._errors.required) ||
+               (formControl.touched && formControl.invalid && formControl._errors.required);
     }
+
+    invalidPattern(formControl): boolean {
+        return (formControl.invalid && this.submitted && formControl._errors.pattern) ||
+               (formControl.touched && formControl.invalid && formControl._errors.pattern);
+    }
+
 
     save(model: User, isValid: boolean) {
         this.submitted = true;
-        
+
         if(!isValid){
             return;
         }
-
-        model.id = new Date().toString();
+        
         this.userService.saveUser(model);
-        console.log(model, isValid);
     }
 }
