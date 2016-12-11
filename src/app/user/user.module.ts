@@ -13,7 +13,6 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { MessageService } from '../common/services/message.service';
 import { UserRoutingModule } from './user-routing.module';
 
-
 @NgModule({
     imports: [BrowserModule, UserRoutingModule, MaterialModule.forRoot(), ReactiveFormsModule, ToastModule],
     declarations: [UserComponent, UserFormComponent, UserCardComponent, GooleMapDirective, UserListComponent],

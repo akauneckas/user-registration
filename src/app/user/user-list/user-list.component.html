@@ -1,3 +1,4 @@
-<div>
+<div class="user-list">
     <user-card *ngFor="let user of users" [user] = user></user-card>
+    <span *ngIf="!users.length">No users registered. Navigate to "Create user" to create a user</span>
 </div>

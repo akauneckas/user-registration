@@ -5,6 +5,8 @@ import { UserModule } from './user/user.module';
 import { AppRoutingModule }  from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { MaterialModule } from '@angular/material';
+import '../../node_modules/@angular/material/core/theming/prebuilt/indigo-pink.css';
+import '../../node_modules/ng2-toastr/bundles/ng2-toastr.min.css';
 
 
 @NgModule({

@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var extractCSS = new ExtractTextPlugin('stylesheets/[name].css');
+var extractCSS = new ExtractTextPlugin('styles.css');
 
 module.exports = {
     devtool: 'inline-source-map',
@@ -17,21 +17,18 @@ module.exports = {
                         loaders: ['awesome-typescript-loader', 'angular2-template-loader?keepUrl=true']
                         // exclude: [/\.(spec|e2e)\.ts$/]
                     },
-                    /* Embed files. */
                     { 
-                        test: /\.(html|less)$/, 
+                        test: /\.(html|less|css)$/, 
                         loader: 'raw-loader'
-                        // exclude: /\.async\.(html|css)$/
                     },
 					{
-						test: /.less$/,
-						exclude: [/node_modules/, /src\/app/],
+						test:  /\.(less|css)$/, 
 						loader:	extractCSS.extract("style-loader", "css-loader!less-loader")
-					},
+					}
                 ]         
     },
     resolve: {
-        extensions: ['', '.js', '.ts']
+        extensions: ['', '.js', '.ts', '.css']
     },
     plugins:[
         new HtmlWebpackPlugin({
