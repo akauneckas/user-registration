@@ -42,11 +42,16 @@ export class UserFormComponent implements OnInit {
 
     save(model: User, isValid: boolean) {
         this.submitted = true;
-
         if(!isValid){
             return;
         }
         
-        this.userService.saveUser(model);
+        this.userService.save(model).subscribe(result => {
+            if(result.success){
+                this.submitted = false;
+                this.userForm.markAsUntouched();
+                this.userForm.reset();
+            }
+        });
     }
 }

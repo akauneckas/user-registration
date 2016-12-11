@@ -14,7 +14,9 @@ export class UserListComponent {
     constructor(private userSerivce: UserService){}
 
     ngOnInit() {
-        this.users = this.userSerivce.getUsers();
+        this.userSerivce.getUsers().subscribe(results => {
+            this.users = results;
+        });
     }
 }
        
