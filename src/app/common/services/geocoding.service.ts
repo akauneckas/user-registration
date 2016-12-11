@@ -12,7 +12,6 @@ import { Observable } from 'rxjs/Observable';
 
     codeAddress(address: string): Observable<google.maps.GeocoderResult[]> {
         return Observable.create((observer: Observer<google.maps.GeocoderResult[]>) => {
-            // Invokes geocode method of Google Maps API geocoding.
             this.geocoder.geocode({'address': address }, (
                 // Results & status.
                 (results: google.maps.GeocoderResult[], status: google.maps.GeocoderStatus) => {
@@ -20,7 +19,7 @@ import { Observable } from 'rxjs/Observable';
                         observer.next(results);
                         observer.complete();
                     } else {
-                        console.log('Geocoding service: geocode was not successful for the following reason: ' + status);
+                        console.log('Geocoding status: ' + status);
                         observer.error(status);
                     }
                 })

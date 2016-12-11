@@ -38,14 +38,14 @@ export class UserService {
         return Observable.create((observer: Observer<{ success: boolean }>) => {
             this.geocodingService.codeAddress(Object.values(user.address).join(' ')).subscribe(
                 results => {
-                    //check es6 features
+
                     user.address.coordinates = {
                         lat: results[0].geometry.location.lat(),
                         lng: results[0].geometry.location.lng()
                     }
                     
                     user.formattedAddress = results[0].formatted_address;
-                    //subscribe
+
                     this.saveToDb(user).subscribe(result => {
                         observer.next(result);
                         observer.complete();
@@ -60,14 +60,13 @@ export class UserService {
         });
     }
 
-    //observable
     private saveToDb(user: User): Observable<{ success: boolean }> {       
         return Observable.create((observer: Observer<{ success: boolean }>) => {
             this.getUsers().subscribe(results => {
                 let users = results;
                 users.push(user);     
                 localStorage.setItem(this.USER_KEY, JSON.stringify(users));
-                this.messageSerice.showSuccessMessage('User saved successfully');
+                this.messageSerice.showSuccessMessage('User was saved successfully');
 
                 observer.next({success: true});
                 observer.complete();
