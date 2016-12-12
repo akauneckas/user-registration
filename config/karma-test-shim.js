@@ -18,4 +18,19 @@ appContext.keys().forEach(appContext);
 var testing = require('@angular/core/testing');
 var browser = require('@angular/platform-browser-dynamic/testing');
 
+//should not use global variables
+window.google = {
+    maps : {
+        OverlayView : function () {
+        },
+        Marker : function () {
+        },
+        InfoWindow : function () {
+        },
+        Map: function (){
+            
+        }
+    }
+};
+
 testing.TestBed.initTestEnvironment(browser.BrowserDynamicTestingModule, browser.platformBrowserDynamicTesting());

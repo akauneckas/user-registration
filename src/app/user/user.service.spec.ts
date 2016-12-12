@@ -11,23 +11,23 @@ describe('User serivce', () => {
     let userService: UserService;
     let geocodingService: GeocodingService;
     let messageService: MessageService;
-            let user = {
-            id: '',
-            name: '',
-            surname: '',
-            email: '',
-            formattedAddress: '',
-            address: {
-                town: '',
-                street: '',
-                houseNumber: '',
-                zipcode: '',
-                coordinates: {
-                    lat: 0,
-                    lng: 0
-                }
+    let user = {
+        id: '',
+        name: '',
+        surname: '',
+        email: '',
+        formattedAddress: '',
+        address: {
+            town: '',
+            street: '',
+            houseNumber: '',
+            zipcode: '',
+            coordinates: {
+                lat: 0,
+                lng: 0
             }
         }
+    }
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -50,16 +50,21 @@ describe('User serivce', () => {
         it('Should fail when geocodingService fails', fakeAsync(() => { 
             spyOn(geocodingService, 'codeAddress').and.returnValue( Observable.throw({}));
 
+            tick();  
+
             userService.save(user).subscribe(result => {},
             error => {
                 expect(error).toBeDefined();
             });
+  
         }));
 
-        it('Should return true when geocodingService succeeds', fakeAsync(() => { 
+        it('Should return true when geocodingService succeeds', fakeAsync(() => {  
+            tick();  
+
             userService.save(user).subscribe(result => {
                 expect(result.success).toEqual(true);
-            })
+            })  
         }));
     });
 });
