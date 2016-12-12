@@ -17,7 +17,7 @@ export class GooleMapDirective implements OnInit {
     constructor(private el: ElementRef) { }
 
     ngOnInit() {
-        this.el.nativeElement.style.height = '100px';
+        this.el.nativeElement.style.height = '150px';
 
         const map = new google.maps.Map(this.el.nativeElement, {
           center: this.coordinates,

@@ -14,12 +14,7 @@ export class UserService {
     constructor(private geocodingService: GeocodingService, private messageSerice: MessageService){
         this.USER_KEY = 'users';
     }
-    //return observable
-    getUser(): User{
-        return this.getUsers()[0];
-    }
 
-    //return observable
     getUsers(): Observable<User[]> {   
         return Observable.create((observer: Observer<User[]>) => {
             let users = new Array<User>();
@@ -73,29 +68,4 @@ export class UserService {
             });
         });
     }
-
-
-    //return observable
-    // saveUser(user: User): void{
-    //    console.log('save', user); 
-    //    //return status
-    //    this.geocodingService.codeAddress(Object.values(user.address).join(' ')).subscribe(
-    //        results => {
-    //            //check es6 features
-    //             let users = this.getUsers();
-    //             user.address.coordinates = {
-    //                 lat: results[0].geometry.location.lat(),
-    //                 lng: results[0].geometry.location.lng()
-    //             }
-
-    //             user.formattedAddress = results[0].formatted_address;
-    //             users.push(user);
-    //             localStorage.setItem(this.USER_KEY, JSON.stringify(users));
-    //             this.messageSerice.showSuccessMessage('User saved successfully');
-    //         },
-    //        error => {
-    //             this.messageSerice.showErrorMessage('Wrong user address');
-    //        }
-    //     );
-    // }
 }

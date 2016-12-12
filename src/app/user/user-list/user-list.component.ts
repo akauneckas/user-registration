@@ -4,7 +4,8 @@ import { User } from '../user.interface';
 
 @Component({
     selector: 'user-list',
-    templateUrl: 'user-list.component.html'
+    templateUrl: 'user-list.component.html',
+    styleUrls: ['./user-list.component.less']
 })
 
 export class UserListComponent {

@@ -48,24 +48,18 @@ describe('User serivce', () => {
     describe('Save', () => {
 
         it('Should fail when geocodingService fails', fakeAsync(() => { 
-            spyOn(geocodingService, 'codeAddress').and.returnValue(Observable.throw({}));
+            spyOn(geocodingService, 'codeAddress').and.returnValue( Observable.throw({}));
 
             userService.save(user).subscribe(result => {},
             error => {
                 expect(error).toBeDefined();
             });
-
-            // tick();
         }));
 
         it('Should return true when geocodingService succeeds', fakeAsync(() => { 
-            // spyOn(geocodingService, 'codeAddress').and.returnValue(new Observable<google.maps.GeocoderResult[]>);
-
             userService.save(user).subscribe(result => {
                 expect(result.success).toEqual(true);
             })
-
-            // tick();
         }));
     });
 });
